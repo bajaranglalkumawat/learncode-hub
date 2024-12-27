@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure of programming.com</title>
+    <style>
+       
+        /* General reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif; 
+            
+            
+        }  
+     
+/* Header  */   
+        header {
+        background-color: #050404;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Logo and Web Name Animation */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            animation: moveLeftToRight 10s linear infinite;
+        }
+
+        /* Keyframe for left to right animation */
+        @keyframes moveLeftToRight {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .logo {
+            width: 170px;
+            height: 150;
+            margin-right: 10px;
+        }
+
+        .website-name {
+            font-size: 30px;
+            color: #fff;
+            font-weight: bold; 
+          
+        }
+
+       
+        .list ol {
+            padding-left: 20px;
+            list-style: decimal; 
+              
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #e4dede;
+            text-transform: uppercase; 
+            background-color: #0b0a0a;
+        }
+
+        .list li {
+            padding: 5px;
+            margin: 5px 0;
+           
+           
+            font-size: 1.1rem;
+          
+              
+        }
+
+       
+        .list li{
+            background-color: #080505;
+        }
+        .list li:active{
+            background-color: #f0e3e3;
+        }
+           .list h5{
+           
+           
+            width: 300px;
+            border: 3px solid #f1edea;
+            font-size: x-large;  
+             text-align: center;
+            
+           
+          
+        
+} 
+        /* Hover Effect for List Items */
+        .list li:hover {
+            background-color: #f7040c;
+            transform: scale(1.05);
+        }
+
+        /* Bottom Section for Gmail and Number with Hover Effects */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #2e0707;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #120401; /* Change color on hover */
+        }
+
+        /* Summary Section */
+        .summary {
+            background-color: rgba(240, 236, 236, 0.93);
+            padding: 100px 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden; 
+            background-image: url(12.jpg);  
+        }
+
+        .summary h2 {
+            font-size: 24px;
+            color: #ded4d4;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .summary p {
+            font-size: 18px;
+            color: #f4eeee;
+            z-index: 2;
+        }
+
+        /* 3D Moving Background Image */
+        .summary::before {
+            content: '';
+            position: absolute;
+          top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+           
+            background-position: center;
+            filter: brightness();
+            z-index: 1;
+            animation: moveBackground 30s linear infinite;
+
+        }  
+        .summary:hover {
+            background-color: #c84515;
+            transform: scale(1.07);
+        }
+
+
+      
+        
+
+        /* Navigation Links */
+        .nav-links {
+            text-align: center;
+            margin-top: 0px; 
+        border-color: #6c0b0b; 
+        background-color: #070606;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #f2ebf0;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s; 
+           
+        } 
+       
+
+        .nav-links a:hover {
+            color: #faf6fb; /* Change color on hover */ 
+            background-color: #9c4242;
+        }
+
+        
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px; 
+            background-image: url(12.jpg);
+        }
+
+        .video-item {
+            width: 300px;
+            text-align: center;
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(236, 234, 234, 0.951);
+        } 
+       
+
+        
+
+        .video-item h5 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #f1eeee;
+        }
+  .img{ 
+      margin-right: 100%;
+  }  
+  .v{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh; /* Full viewport height */
+    background-color: #040404; /* Set desired background color */ 
+     padding-top: 5%; 
+     margin-top: -5%; 
+      padding-bottom: 5%; 
+       margin-bottom: -5%;
+}
+
+iframe {
+    width: 80%; /* Adjust the width of the video */
+    height: 90%; /* Adjust the height of the video */
+    border: none; /* Optional: Remove border around iframe */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for aesthetics */ 
+      color: #e4dede;
+} 
+.i{ 
+    color: #e4dede;  
+    text-align: center; 
+      font-size: larger; 
+      background-color: #010101; 
+       padding-bottom: 5%; 
+        margin-bottom: -5%;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header> 
+       
+          
+        <div class="logo-container">
+            <img src="logo11.png" alt="Website Logo" class="logo">
+            <div class="website-name"></div>
+        </div>   
+    </header> 
+    
+    <!--  Links -->
+    <div class="nav-links">
+        <a href="tutorial.html">Home</a>
+        <a href="aboutt.html">About</a>
+        <a href="FORM.html">Create Account</a>
+        <a href="Generate certificate.html">generate Certificate</a>
+        <a href="download.html">download notes</a>
+        <a href="Questions.html">Question</a> 
+       
+    </div>  
+    <br> 
+    <div class="v"> 
+        <iframe src="hello.mp4" title="Video 1" allowfullscreen></iframe> 
+    
+      </div>    
+      <div class="i"> 
+        <h5> Introduction By Nova  </h5>
+     </div>
+
+    
+    <!-- List  -->
+    <div class="list">
+        <ol>
+            <h5>List of Content:</h5>
+            <li>1. Java Programming</li>
+            <li>2. JavaScript Programming</li>
+            <li>3. Machine Learning Programming</li>
+            <li>4. Node.js Programming</li>
+            <li>5. React.js Programming</li>
+            <li>6. Data Structures Programming</li>
+            <li>7. SQL Programming</li>
+            <li>8. HTML, CSS Programming</li>
+            <li>9. Python Programming</li>
+            <li>10. C Programming</li>
+            <li>11. C++ Programming</li>
+            <li>12. GSoC Roadmap</li> 
+            
+        </ol> 
+      
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+        <h2>Welcome to Treasure of Programming</h2>
+        <p>We aim to make programming learning accessible, engaging, and effective for all skill levels. Whether you're just starting out or an expert, we have resources to help you reach your goals. Dive into our content and explore various programming languages and technologies!</p>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-container">
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/sPM2WiwA1us" title="Video 1" allowfullscreen></iframe>
+            <h5>GSoC 2025 Roadmap</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/UmnCZ7-9yDY" title="Video 2" allowfullscreen></iframe>
+            <h5>Java Complete Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/e7sAf4SbS_g" title="Video 3" allowfullscreen></iframe>
+            <h5>C++ Complete Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/k2DSi1zGEc8" title="Video 4" allowfullscreen></iframe>
+            <h5>HTML Complete Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/rklidcZ-aLU" title="Video 5" allowfullscreen></iframe>
+            <h5>HTML Course with Project</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/UrsmFxEIp5k" title="Video 6" allowfullscreen></iframe>
+            <h5>Python Complete Course with Project</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/VlPiVmYuoqw" title="Video 7" allowfullscreen></iframe>
+            <h5>JavaScript Complete Course with Project</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/GwIo3gDZCVQ" title="Video 8" allowfullscreen></iframe>
+            <h5>Machine Learning Crash Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/TlB_eWDSMt4" title="Video 9" allowfullscreen></iframe>
+            <h5>Node.js Crash Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/8hly31xKli0" title="Video 10" allowfullscreen></iframe>
+            <h5>Data Structures Crash Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/w7ejDZ8SWv8" title="Video 11" allowfullscreen></iframe>
+            <h5>React.js Course</h5>
+        </div>
+    
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/HXV3zeQKqGY" title="Video 12" allowfullscreen></iframe>
+            <h5>SQL Course</h5>
+        </div>
+    </div>
+
+    <!-- Contact  Section  -->
+    <div class="contact-info">
+        <a href="mailto:example@gmail.com">Email: example@gmail.com</a>
+        <a href="tel:+123456789">Phone: +123456789</a>
+    </div>
+
+</body>
+</html>

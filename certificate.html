@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .container {
+            background-color: #fff;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        .question {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .question p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+        #result-container, #certificate-container {
+            display: none;
+        }
+        #certificate-container {
+            font-size: 18px;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e7ffe7;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="start-container">  
+        
+        <h1>Welcome to the Quiz Platform</h1>
+        <p>Select a course to begin:</p>
+        <button onclick="startQuiz('dataStructures')">Data Structures</button>
+        <button onclick="startQuiz('c')">C</button>
+        <button onclick="startQuiz('cPlusPlus')">C++</button>
+        <button onclick="startQuiz('nodeJS')">Node.js</button>
+        <button onclick="startQuiz('reactJS')">React.js</button>
+        <button onclick="startQuiz('python')">Python</button>
+        <button onclick="startQuiz('java')">Java</button>
+    </div>
+
+    <div class="container hidden" id="quiz-container">
+        <h2 id="quiz-title"></h2>
+        <form id="quiz-form"></form>
+        <button onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+
+    <div class="container hidden" id="result-container">
+        <h2>Your Score: <span id="score"></span>/5</h2>
+        <button onclick="generateCertificate()">Generate Certificate</button>
+        <button onclick="goBackToStart()">Try Another Quiz</button>
+    </div>
+
+    <div class="container hidden" id="certificate-container">
+        <h2>Certificate of Completion</h2>
+        <p>Congratulations <span id="user-name"></span>!</p>
+        <p>You have completed the quiz and scored <span id="final-score"></span>/5.</p>
+        <button onclick="goBackToStart()">Back to Start</button>
+    </div>
+
+    <script>
+        const quizzes = {
+            dataStructures: {
+                title: "Data Structures Quiz",
+                questions: [
+                    { question: "What is a stack?", options: ["LIFO", "FIFO", "Last In, First Out", "First In, First Out"], correct: 0 },
+                    { question: "Which of these is a linear data structure?", options: ["Array", "Graph", "Tree", "Heap"], correct: 0 },
+                    { question: "Which of these is not a sorting algorithm?", options: ["Bubble Sort", "Insertion Sort", "Merge Sort", "DFS"], correct: 3 },
+                    { question: "Which data structure uses the concept of 'node'?", options: ["Stack", "Queue", "Tree", "Array"], correct: 2 },
+                    { question: "In which data structure is data stored in a 'first-in, first-out' manner?", options: ["Stack", "Queue", "Linked List", "Array"], correct: 1 }
+                ]
+            },
+            c: {
+                title: "C Programming Quiz",
+                questions: [
+                    { question: "Which function is used to print in C?", options: ["printf", "cin", "println", "echo"], correct: 0 },
+                    { question: "What is the size of an integer in C?", options: ["2 bytes", "4 bytes", "8 bytes", "16 bytes"], correct: 1 },
+                    { question: "Which operator is used for dynamic memory allocation?", options: ["malloc", "alloc", "calloc", "new"], correct: 0 },
+                    { question: "Which of the following is not a data type in C?", options: ["int", "float", "char", "string"], correct: 3 },
+                    { question: "What does 'void' mean in a function?", options: ["Returns an integer", "Returns a float", "No return type", "Takes no arguments"], correct: 2 }
+                ]
+            },
+            // Add other course objects (C++, NodeJS, etc.) here...
+        };
+
+        let currentQuiz = null;
+
+        function startQuiz(course) {
+            document.getElementById('start-container').classList.add('hidden');
+            const quiz = quizzes[course];
+            currentQuiz = quiz;
+            document.getElementById('quiz-title').innerText = quiz.title;
+
+            const form = document.getElementById('quiz-form');
+            form.innerHTML = ''; // Clear previous quiz
+
+            quiz.questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                questionDiv.innerHTML = `
+                    <p>${index + 1}. ${q.question}</p>
+                    <div class="options">
+                        ${q.options.map((option, i) => `
+                            <label>
+                                <input type="radio" name="q${index}" value="${i}">
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            });
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const form = document.getElementById('quiz-form');
+
+            currentQuiz.questions.forEach((q, index) => {
+                const selectedOption = form.querySelector(`input[name="q${index}"]:checked`);
+                if (selectedOption && parseInt(selectedOption.value) === q.correct) {
+                    score++;
+                }
+            });
+
+            document.getElementById('score').innerText = score;
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+        }
+
+        function generateCertificate() {
+            const userName = prompt("Enter your name for the certificate:");
+            const score = document.getElementById('score').innerText;
+
+            document.getElementById('user-name').innerText = userName;
+            document.getElementById('final-score').innerText = score;
+
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('certificate-container').classList.remove('hidden');
+        }
+
+        function goBackToStart() {
+            document.getElementById('certificate-container').classList.add('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('start-container').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

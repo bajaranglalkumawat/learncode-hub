@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #2b0606;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            display: block;
+        }
+
+        .certificate-container {
+            position: relative;
+            width: 850px;
+            height: 650px;
+            background: url('9898.jpg') no-repeat center center / cover;
+            border-radius: 15px;
+            border: 10px solid #4e54c8;
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .certificate-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: hsl(0, 50%, 1%);
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        } 
+
+        .certificate-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase; 
+            color: rgb(86, 59, 112); 
+            text-align: left;  
+            padding-right: 250px; 
+            margin-right: 250px;
+        }
+
+        .certificate-content h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            font-weight: bold; 
+            padding-right: 250px; 
+            margin-right: 250px;
+        }
+
+        .certificate-content p {
+            font-size: 20px;
+            margin: 8px 0;
+            line-height: 1.5; 
+            padding-right: 250px; 
+            margin-right: 250px;
+        }
+
+        .certificate-content .highlight {
+            color: #a07927;
+        } 
+        .certificate-container h3{ 
+             color: #a17413;
+        }
+
+        .input-form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-form input, .input-form select {
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px 0;
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .input-form button {
+            padding: 12px 25px;
+            background-color: #f7b731;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .input-form button:hover {
+            background-color: #342307;
+        }
+
+        .download-btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #f7b731;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #401212;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #342307;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-form">
+        <h2>Enter Your Details</h2>
+        <label for="course">Course Name:</label>
+        <input type="text" id="course" placeholder="Enter Course Name" />
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter Your Name" />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter Your Email" />
+
+        <label for="institute">Institute:</label>
+        <input type="text" id="institute" placeholder="Enter Institute Name" />
+
+        <button onclick="generateCertificate()">Generate Certificate</button>
+    </div>
+
+    <div class="certificate-container" id="certificate" style="display: none;">
+        <div class="certificate-content">
+            <h1>Learncode Hub </h1>
+            <h2>Certificate of Achievement</h2>
+            <p><strong>Course:</strong> <span id="courseOutput" class="highlight">JavaScript Basics</span></p>
+            <p><strong>Name:</strong> <span id="nameOutput" class="highlight">John Doe</span></p>
+            <p><strong>Email:</strong> <span id="emailOutput">johndoe@example.com</span></p>
+            <p><strong>Institute:</strong> <span id="instituteOutput">Programming Academy</span></p>
+            <h3>Congratulations on successfully completing the course with distinction! This certificate acknowledges your dedication and achievement.</h3>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCertificate()" style="display: none;" id="downloadBtn">Download Certificate</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        function generateCertificate() {
+            // Get values from input fields
+            const course = document.getElementById('course').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const institute = document.getElementById('institute').value;
+
+            // Display the certificate and fill in the details
+            document.getElementById('certificate').style.display = 'block';
+            document.getElementById('downloadBtn').style.display = 'block';
+
+            document.getElementById('courseOutput').innerText = course;
+            document.getElementById('nameOutput').innerText = name;
+            document.getElementById('emailOutput').innerText = email;
+            document.getElementById('instituteOutput').innerText = institute;
+        }
+        function downloadCertificate() {
+    const certificate = document.getElementById('certificate');
+
+    // Remove background temporarily
+    const originalBackground = certificate.style.background;
+    certificate.style.background = "#401212";
+
+    html2canvas(certificate, { scale: 2 }).then(canvas => {
+        // Restore the background
+        certificate.style.background = originalBackground;
+
+        const { jsPDF } = jspdf;
+        const pdf = new jsPDF('landscape', 'px', [1123, 794]); // A4 size in landscape
+        const imgData = canvas.toDataURL('image/png'); // Convert canvas to image
+        pdf.addImage(imgData, 'PNG', 0, 0, 1123, 794); // Add the image to PDF
+        pdf.save('certificate.pdf'); // Save the PDF
+    });
+}
+
+    </script>
+</body>
+</html>

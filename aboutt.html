@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #FF6F61, #D4A5A5);
+            height: 100%;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Main Container */
+        .hello {
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Paragraph Styling */
+        .hello p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: justify;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Hover Effect on Paragraph */
+        .hello p:hover {
+            transform: scale(1.05);
+            background-color: #ffcc00;
+            color: #333;
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Responsive Design for Mobile Devices */
+        @media (max-width: 768px) {
+            .hello {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .hello p {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hello">
+        <h1>Welcome to Education.com</h1>
+        <p>
+            This webpage serves as a coding resource, particularly for learners who prefer video tutorials. By using YouTube embeds, it curates a set of valuable educational content on various programming languages and frameworks. The design is minimalistic yet functional, with interactive features like a search bar and dynamic logo.
+        </p>
+        <p>
+            1. Header and Logo
+            The page starts with a header that contains a logo. The logo is displayed at the center, and it enlarges slightly when hovered over, giving a dynamic effect. The logo is linked to the homepage (although the URL is set to "index.html" for local use).
+            <br>
+            2. Navigation Section
+            Below the header, a styled navigation area provides links for: Home, About, Create Account. These links are enclosed in a div with a background color, text alignment, and specific font styling. They guide users through the website's main sections. 
+            <br>
+            3. Introductory Text
+            The webpage contains an introductory paragraph describing the website’s mission, which is to make learning accessible and engaging. The text is designed to be easy to read with specific font and background styling to make it stand out.
+            <br>
+            4. Search Bar
+            A search bar is included in the layout to help users find relevant content quickly. It is styled with a clean input field and a button, both of which have hover effects to improve interactivity.
+            <br>
+            5. Embedded YouTube Videos
+            The page features a collection of YouTube videos related to coding tutorials. These videos cover topics such as Python, JavaScript, HTML, CSS, C++, React, and more, making it a useful resource for learners at various stages. Each video is embedded using an iframe, which displays the video directly on the page. Below each video, a brief description (e.g., "HTML Complete Course," "Python Full Course") is provided to explain the content.
+            <br>
+            6. CSS Styling
+            The design uses modern CSS techniques:
+            Flexbox for responsive layouts, ensuring elements adjust to different screen sizes.
+            Hover effects for interactive elements like the logo and buttons.
+            A consistent color scheme and styling to create an appealing user interface. 
+            <br>
+            7. Responsiveness and Layout
+            Although the code currently uses fixed values for most styling (e.g., fixed width for videos), the use of Flexbox hints at future scalability. The layout will adjust flexibly when more videos or content are added. 
+        </p>
+    </div>
+</body>
+</html>
